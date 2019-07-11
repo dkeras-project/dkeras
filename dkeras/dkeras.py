@@ -52,14 +52,17 @@ class DataServer(object):
 
 class dKeras(object):
 
-    def __init__(self, model):
+    def __init__(self, model, n_workers=None):
         self.model = model
 
         def make_model():
             return model()
 
         # self.n_workers = max(1, psutil.cpu_count() - 2)
-        self.n_workers = 20
+        if n_workers is None:
+            self.n_workers = 20
+        else:
+            self.n_workers = n_workers
         ds = DataServer.remote(self.n_workers)
         temp = make_model()
         weights = temp.get_weights()
