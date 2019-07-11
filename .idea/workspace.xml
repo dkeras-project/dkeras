@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+            <state relative-caret-position="244">
+              <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
               <folding>
                 <element signature="e#54#101#0" expanded="true" />
               </folding>
@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testing/resnet50_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+            <state relative-caret-position="1309">
+              <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
               <folding>
                 <element signature="e#53#100#0" expanded="true" />
               </folding>
@@ -114,8 +114,8 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/dkeras/__init__.py" />
-        <option value="$PROJECT_DIR$/dkeras/dkeras.py" />
         <option value="$PROJECT_DIR$/testing/resnet50_test.py" />
+        <option value="$PROJECT_DIR$/dkeras/dkeras.py" />
       </list>
     </option>
   </component>
@@ -265,22 +265,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
+    <entry file="file://$PROJECT_DIR$/testing/resnet50_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+        <state relative-caret-position="1309">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
           <folding>
-            <element signature="e#54#101#0" expanded="true" />
+            <element signature="e#53#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing/resnet50_test.py">
+    <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="61" column="24" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+        <state relative-caret-position="244">
+          <caret line="220" column="36" lean-forward="true" selection-start-line="220" selection-start-column="36" selection-end-line="220" selection-end-column="36" />
           <folding>
-            <element signature="e#53#100#0" expanded="true" />
+            <element signature="e#54#101#0" expanded="true" />
           </folding>
         </state>
       </provider>

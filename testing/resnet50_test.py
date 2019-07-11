@@ -8,6 +8,7 @@ import numpy as np
 import time
 import ray
 
+from dkeras import dKeras
 from tensorflow.keras.applications import ResNet50
 
 
