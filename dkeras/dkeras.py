@@ -9,6 +9,8 @@ import psutil
 import time
 import ray
 
+from data_server import DataServer
+
 
 @ray.remote
 class DataServer(object):
