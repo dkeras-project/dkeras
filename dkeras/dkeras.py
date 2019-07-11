@@ -9,8 +9,6 @@ import psutil
 import time
 import ray
 
-from tensorflow.keras.applications import ResNet50
-
 
 @ray.remote
 class DataServer(object):

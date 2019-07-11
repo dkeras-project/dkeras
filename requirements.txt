@@ -1,0 +1,4 @@
+ray
+psutil
+numpy
+tensorflow
