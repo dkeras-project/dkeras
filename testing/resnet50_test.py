@@ -5,6 +5,7 @@
 """
 from __future__ import print_function, division
 import numpy as np
+import argparse
 import time
 import ray
 
@@ -12,7 +13,7 @@ from dkeras import dKeras
 from tensorflow.keras.applications import ResNet50
 
 
-def local_inference_test(n_data):
+def local_inference_test(n_data, verbose=True):
     """
 
     :param n_data:
@@ -24,11 +25,12 @@ def local_inference_test(n_data):
     model.predict(data)
     elapsed_time = time.time()-start_time
     del model
-    print("{}\nLocal Inference Test")
-    print("Frames: {}\nFPS: {}".format(n_data, n_data/elapsed_time))
+    if verbose:
+        print("{}\nLocal Inference Test")
+        print("Frames: {}\nFPS: {}".format(n_data, n_data/elapsed_time))
+    return n_data/elapsed_time
 
-
-def distributed_test(n_workers, n_data):
+def distributed_test(n_workers, n_data, verbose=True):
     """
 
     :param n_workers:
@@ -43,8 +45,10 @@ def distributed_test(n_workers, n_data):
     start_time = time.time()
     model.predict(data)
     elapsed_time = time.time()-start_time
-    print("{}\nLocal Inference Test")
-    print("Frames: {}\nFPS: {}".format(n_data, n_data / elapsed_time))
+    if verbose:
+        print("{}\nLocal Inference Test")
+        print("Frames: {}\nFPS: {}".format(n_data, n_data / elapsed_time))
+    return n_data/elapsed_time
 
 
 def main():
@@ -53,22 +57,24 @@ def main():
                         default=1000, type=int)
     parser.add_argument("--n_workers", help="Number of Ray workers",
                         default=5, type=int)
-
+    parser.add_argument("--verbose", help="Verbose, True: 1, False: 0",
+                        default=1, type=int)
     parser.add_argument("--test", help="0: Both, 1: Local, 2: Ray",
                         default=0, type=int)
     args = parser.parse_args()
-
     n_workers = args.n_workers
     test_type = args.test
     n_data = args.n_data
+    verbose = args.verbose
 
+    assert verbose in [0,1], ("Invalid verbose arg, (0, 1): ", verbose)
     if test_type == 0:
-        local_inference_test(n_data)
-        distributed_test(n_workers, n_data)
+        local_inference_test(n_data, verbose=verbose)
+        distributed_test(n_workers, n_data, verbose=verbose)
     elif test_type == 1:
-        local_inference_test(n_data)
+        local_inference_test(n_data, verbose=verbose)
     elif test_type == 2:
-        distributed_test(n_workers, n_data)
+        distributed_test(n_workers, n_data, verbose=verbose)
     else:
         raise UserWarning("Invalid test type arg: {}".format(test_type))
 

@@ -12,72 +12,6 @@ import ray
 from data_server import DataServer
 
 
-@ray.remote
-class DataServer(object):
-
-    def __init__(self, n_workers):
-        """
-
-        :param n_workers:
-        """
-        self.n_workers = n_workers
-        self.id_indexes = {}
-        self.id = 0
-        self.data = []
-        self.indexes = []
-        self.n_data = 0
-        self.results = []
-
-    def set_batch_size(self, batch_size):
-        """
-
-        :param batch_size:
-        :return:
-        """
-        self.batch_size = batch_size
-
-    def is_complete(self):
-        """
-
-        :return:
-        """
-        return self.n_workers == len(self.results)
-
-    def push_data(self, data):
-        """
-
-        :param data:
-        :return:
-        """
-        self.n_data = len(data)
-        self.indexes = list(range(self.n_data))
-        self.data = data
-
-    def push(self, results, packet_id):
-        """
-
-        :param results:
-        :param packet_id:
-        :return:
-        """
-        self.results.append(results)
-
-    def pull(self):
-        """
-
-        :return:
-        """
-        if len(self.data) == 0:
-            return None, []
-        output = self.data[:self.batch_size]
-        self.data = self.data[self.batch_size:]
-        packet_id = str(self.id)
-        self.id_indexes[packet_id] = self.indexes[:self.batch_size]
-        self.indexes = self.indexes[self.batch_size:]
-        self.id += 1
-        return packet_id, output
-
-
 class dKeras(object):
 
     def __init__(self, model, n_workers=None, cpus_per_worker=1, gpus_per_worker=0):
@@ -88,7 +22,13 @@ class dKeras(object):
         :param cpus_per_worker:
         :param gpus_per_worker:
         """
+        if not ray.is_initialized():
+            ray.init()
+
         self.model = model
+        for k in self.model.__dict__.keys():
+            if not (k in self.__dict__):
+                self.__dict__[k] = self.model.__dict__[k]
 
         def make_model():
             return model()
@@ -204,7 +144,7 @@ class dKeras(object):
         """
         self.predict(data)
 
-    def predict(self, data, distributed=True):
+    def predict(self, data, distributed=True, stop_ray=False):
         """
 
         :param data:
@@ -219,3 +159,5 @@ class dKeras(object):
                 time.sleep(1e-4)
         else:
             self.model.predict(data)
+        if stop_ray:
+            ray.shutdown()

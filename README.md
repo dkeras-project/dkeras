@@ -3,7 +3,7 @@
 </p>
 
 # dKeras: Distributed Keras Engine
-***Make Keras faster with only one line of code.***
+### ***Make Keras faster with only one line of code.***
 
 ## Distributed Inference
 
