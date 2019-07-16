@@ -42,7 +42,7 @@ dKeras will soon work alongside with [PlaidML](https://github.com/plaidml/plaidm
 a "portable tensor compiler for enabling deep learning on laptops, embedded devices, 
 or other devices where the available computing hardware is not well 
 supported or the available software stack contains unpalatable 
-license restrictions." This will enable Keras to be run on 
+license restrictions." 
 
 ## Distributed Inference
 
@@ -64,3 +64,6 @@ model.predict(data)
 ## Distributed Training
 
 Under construction...
+
+
+#### ***Author: Stephen Offer***

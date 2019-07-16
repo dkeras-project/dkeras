@@ -9,7 +9,8 @@ import psutil
 import time
 import ray
 
-from data_server import DataServer
+from dkeras.data_server import DataServer
+from dkeras.worker import worker_task
 
 
 class dKeras(object):
@@ -44,26 +45,7 @@ class dKeras(object):
         weights = ray.put(weights)
         del temp
 
-        @ray.remote(num_cpus=cpus_per_worker, num_gpus=gpus_per_worker)
-        def worker_task(weights, ds):
-            """
 
-            :param weights:
-            :param ds:
-            :return:
-            """
-            worker_model = make_model()
-            worker_model.set_weights(weights)
-            while True:
-                packet_id, data = ray.get(ds.pull.remote())
-                if packet_id == 'STOP':
-                    break
-                if len(data) > 0:
-                    data = np.asarray(data)
-                    results = worker_model.predict(data)
-                    ds.push.remote(results, packet_id)
-                else:
-                    time.sleep(1e-3)
 
         for _ in range(self.n_workers):
             worker_task.remote(weights, ds)
