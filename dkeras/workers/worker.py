@@ -8,16 +8,13 @@ import numpy as np
 import time
 import ray
 
-import dkeras.config.config as config
 
-
-@ray.remote(num_cpus=cpus_per_worker, num_gpus=gpus_per_worker)
+@ray.remote(num_cpus=config.N_CPUS_PER_WORKER, num_gpus=config.N_GPUS_PER_WORKER)
 def worker_task(weights, ds, make_model):
     """
 
     :param weights:
     :param ds:
-    :param make_model:
     :return:
     """
     worker_model = make_model()
@@ -31,4 +28,4 @@ def worker_task(weights, ds, make_model):
             results = worker_model.predict(data)
             ds.push.remote(results, packet_id)
         else:
-            time.sleep(config.WORKER_WAIT_TIME)
+            time.sleep(1e-3)
