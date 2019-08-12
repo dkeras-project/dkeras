@@ -3,19 +3,21 @@
 """
 
 """
-from __future__ import print_function, division
-import numpy as np
-import psutil
+from __future__ import division, print_function
+
+import argparse
+import os
 import time
-import pype
+
+import numpy as np
 import ray
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from dkeras.servers.data_server import DataServer
 from dkeras.workers.worker import worker_task
 from dkeras.config import config
-
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import pype
 
 
 class dKeras(object):
@@ -23,10 +25,11 @@ class dKeras(object):
     def __init__(self,
                  model,
                  n_workers=None,
-                 init_ray = True,
-                 rm_existing_ray = True,
+                 init_ray=True,
+                 rm_existing_ray=True,
                  rm_local_model=True,
-                 redis_address = None):
+                 wait_for_workers=False,
+                 redis_address=None):
         """
 
         :param model:
@@ -72,6 +75,12 @@ class dKeras(object):
             worker_task.remote(worker_id, weights, ds, make_model)
         self.data_server = ds
 
+        if wait_for_workers:
+            while True:
+                if self.is_ready():
+                    break
+                else:
+                    time.sleep(1e-3)
 
     def predict(self, data, distributed=True, stop_ray=False):
         """
@@ -87,9 +96,10 @@ class dKeras(object):
             self.data_server.push_data.remote(data)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)
+            return ray.get(self.data_server.pull_results.remote())
             print("Completed!")
         else:
-            self.model.predict(data)
+            return self.model.predict(data)
         if stop_ray:
             ray.shutdown()
 
@@ -101,35 +111,111 @@ class dKeras(object):
     def is_ready(self):
         return ray.get(self.data_server.all_ready.remote())
 
-
+from keras.applications import *
 def main():
-    from tensorflow.keras.applications import ResNet50
 
-    n_data = 1000
+    model_names = {
+        'densenet121'        : DenseNet121,
+        'densenet169'        : DenseNet169,
+        'densenet201'        : DenseNet201,
+        'inception_v3'       : InceptionV3,
+        'inception_resnet_v2': InceptionResNetV2,
+        'mobilenet'          : MobileNet,
+        'mobilenet_v2'       : MobileNetV2,
+        'nasnet_large'       : NASNetLarge,
+        'nasnet_mobile'      : NASNetMobile,
+        'resnet50'           : ResNet50,
+        'vgg16'              : VGG16,
+        'vgg19'              : VGG19,
+        'xception'           : Xception
+    }
+    # os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--n_data", help="Number of fake datapoints",
+                        default=1000, type=int)
+    parser.add_argument("--n_workers", help="Number of Ray workers",
+                        default=5, type=int)
+
+    parser.add_argument("--test", help="0: Local, 1: dKeras",
+                        default=1, type=int)
+
+    parser.add_argument("--search", help="True or False, Find best n_workers",
+                        default=False, type=bool)
+
+    parser.add_argument("--search-pool",
+                        help="n workers to search from, separated by commas",
+                        default='2,3,5,10,20,25,50,60,100', type=str)
+
+    parser.add_argument("--model", help="Model options: {}".format(
+        model_names.keys()),
+                        default='resnet50', type=str)
+    args = parser.parse_args()
+
+    n_workers = args.n_workers
+    test_type = args.test
+    n_data = args.n_data
+    model_name = args.model
+    use_search = args.search
+    search_pool = args.search_pool
+    try:
+        search_pool = list(map(int, search_pool.split(',')))
+    except TypeError:
+        raise UserWarning("Search pool arg must be int separated by commas")
+
+    if not (model_name in model_names.keys()):
+        raise UserWarning(
+            "Model name not found: {}, options: {}".format(
+                model_name, model_names))
+
     test_data = np.float16(np.random.uniform(-1, 1, (n_data, 224, 224, 3)))
-    model = dKeras(ResNet50)
-    # model = ResNet50()
-    while True:
-        if model.is_ready():
-            break
+
+    if test_type == 0:
+        model = model_names[model_name]()
+
+        start_time = time.time()
+        preds = model.predict(test_data)
+        elapsed = time.time() - start_time
+        print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
+    elif (test_type == 1):
+        if use_search:
+            results = {}
+            best_time = np.inf
+            best_n_workers = -1
+            for n in search_pool:
+                model = dKeras(model_names[model_name], wait_for_workers=True,
+                               n_workers=n)
+                print("Workers are ready")
+
+                start_time = time.time()
+                preds = model.predict(test_data)
+                elapsed = time.time() - start_time
+
+                time.sleep(3)
+
+                if elapsed < best_time:
+                    best_time = elapsed
+                    best_n_workers = n
+                results[str(n)] = elapsed
+                model.close()
+            print('{}\nN\tElapsed Time'.format('='*80))
+            for k in results.keys():
+                print("{}\t{}".format(k, results[k]))
+            print("{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
+                '=' * 80, best_n_workers, n_data / best_time))
         else:
-            time.sleep(1e-3)
-    print("Workers are ready")
+            model = dKeras(model_names[model_name], wait_for_workers=True,
+                           n_workers=n_workers)
+            start_time = time.time()
+            preds = model.predict(test_data)
+            elapsed = time.time() - start_time
 
-    start_time = time.time()
-    model.predict(test_data)
-    elapsed = time.time()-start_time
+            model.close()
+            time.sleep(3)
+            print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
 
-    #model.close()
-    #time.sleep(5)
-
-    #output = ray.get(model.data_server.pull_results.remote())
-    #print(np.asarray(output).shape)
-    print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data/elapsed))
 
 if __name__ == "__main__":
     main()
-
 
 """
 Serial
@@ -147,5 +233,30 @@ FPS: 5.754988611134966
 (10, 100, 1000)
 Time elapsed: 92.77561902999878
 FPS: 10.778693911777106
+
+8180
+
+100 workers
+Completed!
+Time elapsed: 6.7965874671936035
+FPS: 147.13266103421643
+
+50 workers
+Time elapsed: 6.318850517272949
+FPS: 158.25663184568796
+
+20 workers
+Workers are ready
+Completed!
+Time elapsed: 8.973508834838867
+FPS: 111.43912803847554
+
+10 workers
+Time elapsed: 15.252501487731934
+FPS: 65.56301606030534
+
+Serial
+Time elapsed: 114.93230748176575
+FPS: 8.700773715507731
 
 """

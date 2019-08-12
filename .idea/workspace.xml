@@ -2,50 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7cf4c0-8e14-40c5-9556-fe6cda8879d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dkeras.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dkeras.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/dkeras_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dkeras_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/perf_graph.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/assets/perf_graph.PNG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/PKG-INFO" beforeDir="false" afterPath="$PROJECT_DIR$/dKeras.egg-info/PKG-INFO" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dKeras.egg-info/SOURCES.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/dependency_links.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dKeras.egg-info/dependency_links.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dKeras.egg-info/top_level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/autoscaler/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/autoscaler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/autoscaler/autoscaler.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/autoscaler/autoscaler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/benchmarks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/benchmarks/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/config/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/config/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/config/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/config/process_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/config/process_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/dkeras.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/interfaces/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/interfaces/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/interfaces/interfaces_frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/interfaces/interfaces_frame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/model/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/model/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/model/model_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/model/model_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/servers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/servers/data_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/data_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/servers/results_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/results_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/servers/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/system/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/system/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/system/hw_profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/system/hw_profiler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/system/ray_profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/system/ray_profiler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/system/sys_profiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/system/sys_profiler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/workers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/workers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/workers/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/workers/worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/testing/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/keras_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/keras_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/model_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/model_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/resnet50_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/resnet50_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/system/central_server.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testing/pype_test.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,35 +26,42 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dkeras/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
+            <state relative-caret-position="-73">
+              <caret line="194" column="39" lean-forward="true" selection-start-line="194" selection-start-column="39" selection-end-line="194" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dkeras/workers/worker.py">
+        <entry file="file://$PROJECT_DIR$/dkeras/system/video_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-            </state>
+            <state relative-caret-position="-763" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dkeras/system/central_server.py">
+        <entry file="file://$PROJECT_DIR$/testing/keras_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="207" column="41" lean-forward="true" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+            <state relative-caret-position="322">
+              <caret line="139" column="24" lean-forward="true" selection-start-line="127" selection-start-column="4" selection-end-line="139" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dkeras/workers/worker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="83">
+              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            <state relative-caret-position="360">
+              <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -103,8 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dkeras/servers/data_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3">
-              <caret line="66" column="11" lean-forward="true" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
+            <state relative-caret-position="990">
+              <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -132,16 +98,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/testing/pype_test.py" />
-        <option value="$PROJECT_DIR$/dkeras/workers/worker.py" />
         <option value="$PROJECT_DIR$/dkeras/servers/data_server.py" />
-        <option value="$PROJECT_DIR$/dkeras/main.py" />
         <option value="$PROJECT_DIR$/dkeras/config/config.py" />
+        <option value="$PROJECT_DIR$/dkeras/main.py" />
+        <option value="$PROJECT_DIR$/dkeras/workers/worker.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="160" />
-    <option name="y" value="23" />
+    <option name="x" value="159" />
+    <option name="y" value="28" />
     <option name="width" value="1280" />
     <option name="height" value="877" />
   </component>
@@ -151,7 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,6 +162,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -230,27 +196,46 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="160" y="23" width="1280" height="877" extended-state="0" />
+    <frame x="159" y="28" width="1280" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32933334" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32933334" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.44266668" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32933334" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.44266668" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -285,34 +270,9 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/dkeras/main.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/testing/model_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dkeras/servers/server.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/workers/worker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testing/pype_test.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -321,31 +281,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/system/central_server.py">
+    <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="207" column="41" lean-forward="true" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="116" column="30" lean-forward="true" selection-start-line="116" selection-start-column="30" selection-end-line="116" selection-end-column="30" />
+        <state relative-caret-position="360">
+          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dkeras/servers/data_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="66" column="11" lean-forward="true" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
+        <state relative-caret-position="990">
+          <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
+    <entry file="file://$PROJECT_DIR$/testing/model_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        <state>
+          <caret selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testing/keras_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="139" column="24" lean-forward="true" selection-start-line="127" selection-start-column="4" selection-end-line="139" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="194" column="39" lean-forward="true" selection-start-line="194" selection-start-column="39" selection-end-line="194" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/system/video_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-763" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/system/central_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="212" selection-start-line="212" selection-end-line="212" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/workers/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
         </state>
       </provider>
     </entry>
