@@ -15,14 +15,22 @@ With an easy-to-use API and a backend framework that can be deployed from
 the laptop to the data center, dKeras simpilifies what used to be a complex
 and time-consuming process into only a few adjustments.
 
+#### Current Capabilities:
+- Data Parallelism Inference
 
-## Coming Soon: Installation
-Just pip, no messy compilers or installing from source necessary. Machine learning can be hard enough without extra headaches.
-```bash
-pip install dkeras
-```
+#### Future Capabilities:
+- Model Parallelism Inference
+- Distributed Training
+- Easy Multi-model production-ready building
+- Data stream input distributed inference
+- PlaidML Support
+- Autoscaling
+- Automatic optimal hardware configuration 
+- PBS/Torque support
 
-Or if you want to develop using dKeras:
+## Installation
+dKeras will be available with the first official release coming soon. For 
+now, install from source.
 ```bash
 git clone https://github.com/gndctrl2mjrtm/dkeras
 cd dkeras
@@ -36,6 +44,7 @@ pip install -e .
 - psutil
 - Linux (or OSX, dKeras works on laptops too!)
 - numpy
+
 
 ### Coming Soon: [PlaidML](https://github.com/plaidml/plaidml) Support
 dKeras will soon work alongside with [PlaidML](https://github.com/plaidml/plaidml), 
@@ -60,10 +69,3 @@ from dkeras import dKeras
 model = dKeras(ResNet50)
 model.predict(data)
 ```
-
-## Distributed Training
-
-Under construction...
-
-
-#### ***Author: Stephen Offer***
