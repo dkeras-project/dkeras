@@ -2,4 +2,4 @@ ray
 argparse
 psutil
 numpy
-tensorflow
+keras
