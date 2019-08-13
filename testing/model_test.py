@@ -5,7 +5,7 @@
 
 """
 from __future__ import print_function, division
-from keras.applications import *
+from tensorflow.keras.applications import *
 import numpy as np
 import argparse
 import time

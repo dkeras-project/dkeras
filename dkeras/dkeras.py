@@ -23,7 +23,7 @@ class dKeras(object):
                  model,
                  n_workers=None,
                  init_ray=True,
-                 rm_existing_ray=True,
+                 rm_existing_ray=False,
                  rm_local_model=True,
                  wait_for_workers=False,
                  redis_address=None):
