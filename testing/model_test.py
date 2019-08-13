@@ -5,7 +5,11 @@
 
 """
 from __future__ import print_function, division
-from tensorflow.keras.applications import *
+from tensorflow.keras.applications import DenseNet121, DenseNet169, DenseNet201
+from tensorflow.keras.applications import InceptionV3, InceptionResNetV2
+from tensorflow.keras.applications import DenseNet201, MobileNetV2, MobileNet
+from tensorflow.keras.applications import NASNetLarge, NASNetMobile
+from tensorflow.keras.applications import ResNet50, VGG16, VGG19, Xception
 import numpy as np
 import argparse
 import time
@@ -116,47 +120,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-"""
-Serial
-Time elapsed: 88.29588603973389
-FPS: 11.325555978338466
-
-3 workers
-Time elapsed: 139.755868434906
-FPS: 7.155334593092735
-
-10 workers
-Time elapsed: 173.76229000091553
-FPS: 5.754988611134966
-
-(10, 100, 1000)
-Time elapsed: 92.77561902999878
-FPS: 10.778693911777106
-
-8180
-
-100 workers
-Completed!
-Time elapsed: 6.7965874671936035
-FPS: 147.13266103421643
-
-50 workers
-Time elapsed: 6.318850517272949
-FPS: 158.25663184568796
-
-20 workers
-Workers are ready
-Completed!
-Time elapsed: 8.973508834838867
-FPS: 111.43912803847554
-
-10 workers
-Time elapsed: 15.252501487731934
-FPS: 65.56301606030534
-
-Serial
-Time elapsed: 114.93230748176575
-FPS: 8.700773715507731
-
-"""
