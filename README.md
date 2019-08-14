@@ -49,7 +49,7 @@ be quickly sped up through data parallelism:
 - PBS/Torque support
 
 ## Installation
-dKeras will be available with the first official release coming soon. For 
+The first official release of dKeras will be available soon. For 
 now, install from source.
 ```bash
 git clone https://github.com/gndctrl2mjrtm/dkeras
@@ -67,7 +67,7 @@ pip install -e .
 
 
 ### Coming Soon: [PlaidML](https://github.com/plaidml/plaidml) Support
-dKeras will soon work alongside with [PlaidML](https://github.com/plaidml/plaidml), 
+dKeras will soon work alongside [PlaidML](https://github.com/plaidml/plaidml), 
 a "portable tensor compiler for enabling deep learning on laptops, embedded devices, 
 or other devices where the available computing hardware is not well 
 supported or the available software stack contains unpalatable 
