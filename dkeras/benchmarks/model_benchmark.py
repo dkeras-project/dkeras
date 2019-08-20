@@ -7,6 +7,7 @@ from __future__ import division, print_function
 
 import argparse
 import time
+import ray
 
 import numpy as np
 from tensorflow.keras.applications import (DenseNet121, DenseNet169,
@@ -20,6 +21,9 @@ from dkeras import dKeras
 
 
 def main():
+    if ray.is_initialized():
+        ray.shutdown()
+    ray.init()
     model_names = {
         'densenet121'        : DenseNet121,
         'densenet169'        : DenseNet169,
@@ -98,6 +102,8 @@ def main():
 
                 for n in search_pool:
                     model = dKeras(m, wait_for_workers=True,
+                                   init_ray=False,
+                                   rm_existing_ray=False,
                                    n_workers=n)
                     print("Workers are ready")
 
@@ -122,7 +128,10 @@ def main():
                 print("{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
                     '=' * 80, best_n_workers, n_data / best_time))
             else:
-                model = dKeras(model_names[model_name], wait_for_workers=True,
+                model = dKeras(model_names[model_name],
+                               init_ray=False,
+                               wait_for_workers=True,
+                               rm_existing_ray=False,
                                n_workers=n_workers)
 
             start_time = time.time()
