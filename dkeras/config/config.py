@@ -9,7 +9,7 @@ from __future__ import print_function, division
 # Remote Worker Functions Configuration
 # -----------------------------------------------------------------------------
 DEFAULT_N_WORKERS = 4
-WORKER_WAIT_TIME = 1e-4
+WORKER_WAIT_TIME = 5e-3
 WORKER_INFERENCE_BATCH_SIZE = 250
 
 # -----------------------------------------------------------------------------

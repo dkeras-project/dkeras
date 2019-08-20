@@ -17,8 +17,8 @@ def main():
                 print("Removing: {}".format(path))
                 os.system('rm -rf {}'.format(path))
 
-    print("Removing pype.egg-info")
-    os.system('rm -rf {}'.format(os.path.join(dirpath,'pype.egg-info')))
+    print("Removing dKeras.egg-info")
+    os.system('rm -rf {}'.format(os.path.join(dirpath,'dKeras.egg-info')))
 
 
 if __name__ == "__main__":

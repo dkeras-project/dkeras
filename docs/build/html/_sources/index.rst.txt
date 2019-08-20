@@ -3,18 +3,28 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to dkeras's documentation!
-==================================
+Documentation
+**************
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 6
+   :caption: About dKeras
 
+   why
 
+   install
 
-Indices and tables
-==================
+   getting_started
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 6
+   :caption: The dKeras API
+
+   model_api
+
+.. toctree::
+   :maxdepth: 6
+   :caption: Examples
+
+   data_parallelism
+

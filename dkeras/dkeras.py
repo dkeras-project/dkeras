@@ -18,26 +18,78 @@ from dkeras.config import config
 
 
 class dKeras(object):
+    """Distributed Keras Model Wrapper.
+
+        It will automatically set up remote
+        workers and data servers for data parallelism algorithms. Using
+        the same notation as a regular Keras model, it makes distributing a
+        Keras model simple.
+
+        .. code-block:: python
+
+            from tensorflow.keras.applications import ResNet50
+            from dkeras import dKeras
+
+            model = dKeras(ResNet50)
+            preds = model.predict(data)
+
+        Arguments:
+            model: Un-initialized Keras model
+            verbose: Verbose setting boolean variable. Default is False.
+            weights: Weights arg for prebuilt models, example: ResNet50(
+                weights='imagenet'). Default is None.
+            n_workers: Integer number of worker processes. If left None,
+                then it will automatically find the an estimate of the optimal
+                number of workers. Default is None.
+            init_ray: Boolean arg for whether to initialize Ray within
+                the model initialization. Default is False.
+            rm_existing_ray: Boolean arg for whether to remove any
+                existing Ray clusters. Default is True.
+            rm_local_model: Boolean arg for whether to remove the local
+                copy of the Keras model for memory conservation. Default is
+                False.
+            wait_for_workers: Boolean arg for whether to wait for all of
+                the worker processes to initialize and connect to the data
+                server.
+            redis_address: In the case of initializing Ray inside of
+                model initialization, the redis address is required for
+                connecting to existing Ray clusters.
+            n_cpus_per_worker: The integer number of CPUs per worker
+                processes. If left None, it will allocate automatically. The
+                default is None.
+            n_gpus_per_worker: The integer or float number of GPUs per
+                worker processes. If left None, it will allocate
+                automatically. The default is None.
+            n_cpus_per_server: The integer number of CPUs per data
+                server. If left None, it will allocate automatically. The
+                default is None.
+            """
 
     def __init__(self,
                  model,
-                 weights=None,
-                 n_workers=None,
-                 init_ray=True,
-                 rm_existing_ray=False,
-                 rm_local_model=True,
-                 wait_for_workers=False,
-                 redis_address=None):
-        """
+                 verbose: bool = True,
+                 weights: list = None,
+                 n_workers: int = None,
+                 init_ray: bool = True,
+                 rm_existing_ray: bool = False,
+                 rm_local_model: bool = True,
+                 wait_for_workers: bool = False,
+                 redis_address: str = None,
+                 n_cpus_per_worker: int = None,
+                 n_gpus_per_worker: int = None,
+                 n_cpus_per_server: int = None):
 
-        :param model:
-        :param n_workers:
-        """
+        config.N_CPUS_PER_SERVER = n_cpus_per_server
+        config.N_CPUS_PER_WORKER = n_cpus_per_worker
+        config.N_CPUS_PER_SERVER = n_gpus_per_worker
+        self.verbose = verbose
         if init_ray:
             if ray.is_initialized():
                 if rm_existing_ray:
                     ray.shutdown()
                     ray.init()
+                else:
+                    ray.init(redis_address=redis_address)
             else:
                 ray.init()
 
@@ -91,7 +143,7 @@ class dKeras(object):
             n_data = len(data)
             if n_data % self.n_workers > 0:
                 self.data_server.set_batch_size.remote(
-                    int(n_data / self.n_workers)+1)
+                    int(n_data / self.n_workers) + 1)
             else:
                 self.data_server.set_batch_size.remote(
                     int(n_data / self.n_workers))

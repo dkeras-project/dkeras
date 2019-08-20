@@ -3,11 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="2f7cf4c0-8e14-40c5-9556-fe6cda8879d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cleanup.py" beforeDir="false" afterPath="$PROJECT_DIR$/cleanup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dKeras.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/config/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dkeras/dkeras.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/dkeras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/servers/data_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/data_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/keras_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/model_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/model_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/.buildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/index.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,31 +32,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dkeras/autoscaler/autoscaler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="126">
+              <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dkeras/servers/data_server.py">
+        <entry file="file://$PROJECT_DIR$/testing/example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testing/model_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="942">
+              <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="116">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cleanup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/data_parallelism.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/source/model_api.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
     </leaf>
@@ -58,7 +124,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/testing/pype_test.py" />
-        <option value="$PROJECT_DIR$/dkeras/config/config.py" />
         <option value="$PROJECT_DIR$/dkeras/workers/worker.py" />
         <option value="$PROJECT_DIR$/dkeras/main.py" />
         <option value="$PROJECT_DIR$/dkeras/__init__.py" />
@@ -73,11 +138,15 @@
         <option value="$PROJECT_DIR$/testing/double_predict_test.py" />
         <option value="$PROJECT_DIR$/testing/basic_test.py" />
         <option value="$PROJECT_DIR$/testing/multi_predict_test.py" />
-        <option value="$PROJECT_DIR$/dkeras/dkeras.py" />
         <option value="$PROJECT_DIR$/dkeras/servers/data_server.py" />
         <option value="$PROJECT_DIR$/testing/multi_model_test.py" />
+        <option value="$PROJECT_DIR$/dkeras/config/config.py" />
         <option value="$PROJECT_DIR$/cleanup.py" />
         <option value="$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py" />
+        <option value="$PROJECT_DIR$/docs/source/index.rst" />
+        <option value="$PROJECT_DIR$/docs/source/model_api.rst" />
+        <option value="$PROJECT_DIR$/docs/source/conf.py" />
+        <option value="$PROJECT_DIR$/dkeras/dkeras.py" />
       </list>
     </option>
   </component>
@@ -115,43 +184,24 @@
               <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
               <item name="dkeras" type="462c0819:PsiDirectoryNode" />
               <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="autoscaler" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
               <item name="benchmarks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
               <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
               <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
               <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="servers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="dkeras" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dkeras" type="b2602c69:ProjectViewProjectNode" />
@@ -196,6 +246,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="23" width="1371" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2325926" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -269,13 +320,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dkeras/system/video_server.py" />
     <entry file="file://$PROJECT_DIR$/dkeras/system/central_server.py" />
     <entry file="file://$PROJECT_DIR$/dkeras/workers/worker.py">
@@ -403,27 +447,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="108" column="29" lean-forward="true" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing/model_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="37" lean-forward="true" selection-end-line="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cleanup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testing/multi_model_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -445,6 +468,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/autoscaler/autoscaler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cleanup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/data_parallelism.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/model_api.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dkeras/config/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="36" column="22" lean-forward="true" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testing/example.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -452,17 +519,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
+    <entry file="file://$PROJECT_DIR$/testing/model_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+        <state relative-caret-position="942">
+          <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dkeras/autoscaler/autoscaler.py">
+    <entry file="file://$PROJECT_DIR$/dkeras/dkeras.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        <state relative-caret-position="126">
+          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
         </state>
       </provider>
     </entry>

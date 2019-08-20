@@ -85,39 +85,45 @@ def main():
         print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
 
     elif test_type == 1:
-        if use_search:
-            results = {}
-            best_time = np.inf
-            best_n_workers = -1
-
-            for n in search_pool:
-                model = dKeras(model_names[model_name], wait_for_workers=True,
-                               n_workers=n)
-                print("Workers are ready")
-
-                start_time = time.time()
-                preds = model.predict(test_data)
-                elapsed = time.time() - start_time
-
-                time.sleep(3)
-
-                if elapsed < best_time:
-                    best_time = elapsed
-                    best_n_workers = n
-
-                results[str(n)] = elapsed
-                model.close()
-
-            print('{}\nN\tElapsed Time'.format('=' * 80))
-
-            for k in results.keys():
-                print("{}\t{}".format(k, results[k]))
-
-            print("{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
-                '=' * 80, best_n_workers, n_data / best_time))
+        if model_name != 'all':
+            models = [model_names[model_name]]
         else:
-            model = dKeras(model_names[model_name], wait_for_workers=True,
-                           n_workers=n_workers)
+            models = [model_names[m] for m in model_names.keys()]
+
+        for m in models:
+            if use_search:
+                results = {}
+                best_time = np.inf
+                best_n_workers = -1
+
+                for n in search_pool:
+                    model = dKeras(m, wait_for_workers=True,
+                                   n_workers=n)
+                    print("Workers are ready")
+
+                    start_time = time.time()
+                    preds = model.predict(test_data)
+                    elapsed = time.time() - start_time
+
+                    time.sleep(3)
+
+                    if elapsed < best_time:
+                        best_time = elapsed
+                        best_n_workers = n
+
+                    results[str(n)] = elapsed
+                    model.close()
+
+                print('{}\nN\tElapsed Time'.format('=' * 80))
+
+                for k in results.keys():
+                    print("{}\t{}".format(k, results[k]))
+
+                print("{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
+                    '=' * 80, best_n_workers, n_data / best_time))
+            else:
+                model = dKeras(model_names[model_name], wait_for_workers=True,
+                               n_workers=n_workers)
 
             start_time = time.time()
             preds = model.predict(test_data)
