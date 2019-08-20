@@ -4,6 +4,8 @@
 
 """
 from __future__ import print_function, division
+import numpy as np
+import time
 import ray
 
 
@@ -21,14 +23,20 @@ class DataServer(object):
         self.data = []
         self.indexes = []
         self.n_data = 0
-        self.results = []
+        self.results = [-1 for _ in range(self.n_workers)]
         self.closed = False
         self.worker_status = {}
         for n in worker_ids:
             self.worker_status[n] = False
 
     def pull_results(self):
-        return self.results
+        output = []
+        for n in self.results:
+            for x in n:
+                output.append(x)
+        output = np.asarray(output)
+        self.results = [-1 for _ in range(self.n_workers)]
+        return output
 
     def close(self):
         self.closed = True
@@ -46,6 +54,9 @@ class DataServer(object):
 
         :return:
         """
+        for i in range(len(self.results)):
+            if isinstance(self.results[i], int):
+                return False
         return self.n_workers == len(self.results)
 
     def push_data(self, data):
@@ -55,8 +66,10 @@ class DataServer(object):
         :return:
         """
         self.n_data = len(data)
-        self.indexes = list(range(self.n_data))
         self.data = data
+
+    def parse_packet_id(self, packet_id):
+        return int(packet_id)
 
     def push(self, results, packet_id):
         """
@@ -65,7 +78,8 @@ class DataServer(object):
         :param packet_id:
         :return:
         """
-        self.results.append(results)
+        index = self.parse_packet_id(packet_id)
+        self.results[index] = results
 
     def pull(self):
         """
@@ -79,9 +93,9 @@ class DataServer(object):
         output = self.data[:self.batch_size]
         self.data = self.data[self.batch_size:]
         packet_id = str(self.id)
-        self.id_indexes[packet_id] = self.indexes[:self.batch_size]
-        self.indexes = self.indexes[self.batch_size:]
         self.id += 1
+        if len(self.data) == 0:
+            self.id = 0
         return packet_id, output
 
     def is_ready(self, worker_id):

@@ -21,6 +21,7 @@ class dKeras(object):
 
     def __init__(self,
                  model,
+                 weights=None,
                  n_workers=None,
                  init_ray=True,
                  rm_existing_ray=False,
@@ -49,7 +50,7 @@ class dKeras(object):
         for i in range(self.n_workers):
             worker_ids.append('worker_{}'.format(i))
         self.worker_ids = worker_ids
-        self.model = model()
+        self.model = model(weights=weights)
         ds = DataServer.remote(self.n_workers, self.worker_ids)
         weights = self.model.get_weights()
         weights = ray.put(weights)
@@ -88,8 +89,12 @@ class dKeras(object):
         """
         if distributed:
             n_data = len(data)
-            self.data_server.set_batch_size.remote(
-                int(n_data / self.n_workers))
+            if n_data % self.n_workers > 0:
+                self.data_server.set_batch_size.remote(
+                    int(n_data / self.n_workers)+1)
+            else:
+                self.data_server.set_batch_size.remote(
+                    int(n_data / self.n_workers))
             self.data_server.push_data.remote(data)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)

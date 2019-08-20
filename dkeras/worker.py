@@ -24,6 +24,8 @@ def worker_task(weights, ds, make_model):
     worker_model.set_weights(weights)
     while True:
         packet_id, data = ray.get(ds.pull.remote())
+        print("-"*80)
+        print("Packet id: ", packet_id)
         if packet_id == 'STOP':
             break
         if len(data) > 0:
