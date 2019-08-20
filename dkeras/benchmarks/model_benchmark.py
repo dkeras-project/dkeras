@@ -111,8 +111,6 @@ def main():
                     preds = model.predict(test_data)
                     elapsed = time.time() - start_time
 
-                    time.sleep(3)
-
                     if elapsed < best_time:
                         best_time = elapsed
                         best_n_workers = n
@@ -134,14 +132,14 @@ def main():
                                rm_existing_ray=False,
                                n_workers=n_workers)
 
-            start_time = time.time()
-            preds = model.predict(test_data)
-            elapsed = time.time() - start_time
+                start_time = time.time()
+                preds = model.predict(test_data)
+                elapsed = time.time() - start_time
 
-            model.close()
-            time.sleep(3)
+                model.close()
+                time.sleep(3)
 
-            print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
+                print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
 
 
 if __name__ == "__main__":
