@@ -72,10 +72,10 @@ def main():
     except TypeError:
         raise UserWarning("Search pool arg must be int separated by commas")
 
-    if not (model_name in model_names.keys()):
+    if not (model_name == 'all') or (model_name in model_names.keys()):
         raise UserWarning(
             "Model name not found: {}, options: {}".format(
-                model_name, model_names))
+                model_name, model_names.keys()))
 
     test_data = np.float16(np.random.uniform(-1, 1, (n_data, 224, 224, 3)))
 
@@ -91,10 +91,13 @@ def main():
     elif test_type == 1:
         if model_name != 'all':
             models = [model_names[model_name]]
+            model_names = [model_name]
         else:
             models = [model_names[m] for m in model_names.keys()]
+            model_names = [m for m in model_names.keys()]
 
-        for m in models:
+        for m, name in zip(models, model_names):
+            print('{}\n{}'.format('='*80, name.upper()))
             if use_search:
                 results = {}
                 best_time = np.inf
@@ -118,13 +121,13 @@ def main():
                     results[str(n)] = elapsed
                     model.close()
 
-                print('{}\nN\tElapsed Time'.format('=' * 80))
+                # print('{}\n\t{}\n\tElapsed Time'.format('=' * 80))
 
                 for k in results.keys():
                     print("{}\t{}".format(k, results[k]))
 
-                print("{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
-                    '=' * 80, best_n_workers, n_data / best_time))
+                print("{}\n{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
+                    '=' * 80, name, best_n_workers, n_data / best_time))
             else:
                 model = dKeras(model_names[model_name],
                                init_ray=False,
