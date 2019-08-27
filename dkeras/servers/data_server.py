@@ -3,9 +3,9 @@
 """
 
 """
-from __future__ import print_function, division
+from __future__ import division, print_function
+
 import numpy as np
-import time
 import ray
 
 
@@ -16,6 +16,7 @@ class DataServer(object):
         """
 
         :param n_workers:
+        :param worker_ids:
         """
         self.n_workers = n_workers
         self.id_indexes = {}
@@ -30,6 +31,10 @@ class DataServer(object):
             self.worker_status[n] = False
 
     def pull_results(self):
+        """
+
+        :return:
+        """
         output = []
         for n in self.results:
             for x in n:
@@ -39,6 +44,10 @@ class DataServer(object):
         return output
 
     def close(self):
+        """
+
+        :return:
+        """
         self.closed = True
 
     def set_batch_size(self, batch_size):
@@ -69,6 +78,11 @@ class DataServer(object):
         self.data = data
 
     def parse_packet_id(self, packet_id):
+        """
+
+        :param packet_id:
+        :return:
+        """
         return int(packet_id)
 
     def push(self, results, packet_id):
@@ -99,9 +113,18 @@ class DataServer(object):
         return packet_id, output
 
     def is_ready(self, worker_id):
+        """
+
+        :param worker_id:
+        :return:
+        """
         self.worker_status[worker_id] = True
 
     def all_ready(self):
+        """
+
+        :return:
+        """
         for worker_id in self.worker_status.keys():
             if not self.worker_status[worker_id]:
                 return False

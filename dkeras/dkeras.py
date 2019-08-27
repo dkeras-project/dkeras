@@ -89,7 +89,12 @@ class dKeras(object):
                     ray.shutdown()
                     ray.init()
                 else:
-                    ray.init(redis_address=redis_address)
+                    if redis_address is None:
+                        raise UserWarning(
+                            "Ray already initialized, rm_existing_ray is "
+                            "False, and redis_address is None")
+                    else:
+                        ray.init(redis_address=redis_address)
             else:
                 ray.init()
 
@@ -161,6 +166,7 @@ class dKeras(object):
         self.data_server.close.remote()
         if stop_ray:
             ray.shutdown()
+        time.sleep(5e-2)
 
     def is_ready(self):
         return ray.get(self.data_server.all_ready.remote())

@@ -41,7 +41,7 @@ def main():
     }
     # os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n_data", help="Number of fake datapoints",
+    parser.add_argument("--n-data", help="Number of fake datapoints",
                         default=1000, type=int)
     parser.add_argument("--n_workers", help="Number of Ray workers",
                         default=5, type=int)
@@ -72,7 +72,7 @@ def main():
     except TypeError:
         raise UserWarning("Search pool arg must be int separated by commas")
 
-    if not (model_name == 'all') or (model_name in model_names.keys()):
+    if not ((model_name == 'all') or (model_name in model_names.keys())):
         raise UserWarning(
             "Model name not found: {}, options: {}".format(
                 model_name, model_names.keys()))

@@ -67,7 +67,7 @@ def init_pbs_ray(n_workers=3, rm_existing=True, iface_name='eno1', worker_time=3
     return wait_for_IPs(n_workers+1)
 
 
-def main()
+def main():
     init_pbs_ray()
 
 if __name__ == "__main__":
