@@ -77,10 +77,11 @@ def main():
             "Model name not found: {}, options: {}".format(
                 model_name, model_names.keys()))
 
-    test_data = np.float16(np.random.uniform(-1, 1, (n_data, 224, 224, 3)))
-
     if test_type == 0:
         model = model_names[model_name]()
+
+        _, h, w, c = model.input_shape
+        test_data = np.float16(np.random.uniform(-1, 1, (n_data, h, w, c)))
 
         start_time = time.time()
         preds = model.predict(test_data)
@@ -108,6 +109,9 @@ def main():
                                    init_ray=False,
                                    rm_existing_ray=False,
                                    n_workers=n)
+                    _, h, w, c = model.input_shape
+                    test_data = np.float16(
+                        np.random.uniform(-1, 1, (n_data, h, w, c)))
                     print("Workers are ready")
 
                     start_time = time.time()
@@ -129,11 +133,14 @@ def main():
                 print("{}\n{}\nTests completed:\n\tBest N workers: {}\t FPS: {}".format(
                     '=' * 80, name, best_n_workers, n_data / best_time))
             else:
-                model = dKeras(model_names[model_name],
+                model = dKeras(m,
                                init_ray=False,
                                wait_for_workers=True,
                                rm_existing_ray=False,
                                n_workers=n_workers)
+                _, h, w, c = model.input_shape
+                test_data = np.float16(
+                    np.random.uniform(-1, 1, (n_data, h, w, c)))
 
                 start_time = time.time()
                 preds = model.predict(test_data)

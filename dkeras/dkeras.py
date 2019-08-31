@@ -108,6 +108,7 @@ class dKeras(object):
             worker_ids.append('worker_{}'.format(i))
         self.worker_ids = worker_ids
         self.model = model(weights=weights)
+        self.input_shape = self.model.input_shape
         ds = DataServer.remote(self.n_workers, self.worker_ids)
         weights = self.model.get_weights()
         weights = ray.put(weights)
