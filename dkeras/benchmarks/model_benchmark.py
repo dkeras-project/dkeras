@@ -86,25 +86,32 @@ def main():
             "Model name not found: {}, options: {}".format(
                 model_name, model_names.keys()))
 
+    if model_name != 'all':
+        models = [model_names[model_name]]
+        model_names = [model_name]
+    else:
+        models = [model_names[m] for m in model_names.keys()]
+        model_names = [m for m in model_names.keys()]
+
     if test_type == 0:
-        model = model_names[model_name]()
+        print(model_names)
+        for model, name in zip(models, model_names):
+            print('{}\n{}'.format('='*80, name))
+            model = model()
+            # model = model_names[model_name]()
 
-        _, h, w, c = model.input_shape
-        test_data = np.float16(np.random.uniform(-1, 1, (n_data, h, w, c)))
+            _, h, w, c = model.input_shape
+            if (h is None) or (w is None):
+                h, w = default_shape[0], default_shape[1]
+            test_data = np.float16(np.random.uniform(-1, 1, (n_data, h, w, c)))
 
-        start_time = time.time()
-        preds = model.predict(test_data)
-        elapsed = time.time() - start_time
+            start_time = time.time()
+            preds = model.predict(test_data)
+            elapsed = time.time() - start_time
 
-        print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
+            print("Time elapsed: {}\nFPS: {}".format(elapsed, n_data / elapsed))
 
     elif test_type == 1:
-        if model_name != 'all':
-            models = [model_names[model_name]]
-            model_names = [model_name]
-        else:
-            models = [model_names[m] for m in model_names.keys()]
-            model_names = [m for m in model_names.keys()]
 
         for m, name in zip(models, model_names):
             print('{}\n{}'.format('='*80, name.upper()))
