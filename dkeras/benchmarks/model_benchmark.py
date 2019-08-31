@@ -21,9 +21,7 @@ from dkeras import dKeras
 
 
 def main():
-    if ray.is_initialized():
-        ray.shutdown()
-    ray.init()
+
     model_names = {
         'densenet121'        : DenseNet121,
         'densenet169'        : DenseNet169,
@@ -52,6 +50,9 @@ def main():
     parser.add_argument("--search", help="True or False, Find best n_workers",
                         default=False, type=bool)
 
+    parser.add_argument("--object_store_memory", help="True or False, Find best n_workers",
+                        default=20000000000, type=int)
+
     parser.add_argument("--search-pool",
                         help="n workers to search from, separated by commas",
                         default='2,3,5,10,20,25,50,60,100', type=str)
@@ -67,6 +68,14 @@ def main():
     model_name = args.model
     use_search = args.search
     search_pool = args.search_pool
+
+    if ray.is_initialized():
+        ray.shutdown()
+    # ray.init(object_store_memory=args.object_store_memory)
+    ray.init()
+
+    default_shape = (224, 224, 3)
+
     try:
         search_pool = list(map(int, search_pool.split(',')))
     except TypeError:
@@ -110,6 +119,8 @@ def main():
                                    rm_existing_ray=False,
                                    n_workers=n)
                     _, h, w, c = model.input_shape
+                    if (h is None) or (w is None):
+                        h, w = default_shape[0], default_shape[1]
                     test_data = np.float16(
                         np.random.uniform(-1, 1, (n_data, h, w, c)))
                     print("Workers are ready")
@@ -125,6 +136,8 @@ def main():
                     results[str(n)] = elapsed
                     model.close()
 
+
+
                 # print('{}\n\t{}\n\tElapsed Time'.format('=' * 80))
 
                 for k in results.keys():
@@ -139,6 +152,8 @@ def main():
                                rm_existing_ray=False,
                                n_workers=n_workers)
                 _, h, w, c = model.input_shape
+                if (h is None) or (w is None):
+                    h, w = default_shape[0], default_shape[1]
                 test_data = np.float16(
                     np.random.uniform(-1, 1, (n_data, h, w, c)))
 
