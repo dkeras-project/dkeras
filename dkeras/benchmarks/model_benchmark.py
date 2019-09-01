@@ -94,7 +94,7 @@ def main():
         model_names = [m for m in model_names.keys()]
 
     if test_type == 0:
-        print(model_names)
+
         for model, name in zip(models, model_names):
             print('{}\n{}'.format('='*80, name))
             model = model()
