@@ -1,0 +1,3 @@
+
+ray start --redis-address=10.212.62.88:33799
+sleep 3600
