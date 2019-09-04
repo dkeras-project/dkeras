@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Documentation &mdash; dkeras 0.0.1 documentation</title>
+  <title>dKeras: Distributed Keras Engine &mdash; dkeras 0.0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="why.html" /> 
+    <link rel="next" title="Why Use dKeras?" href="why.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,9 +82,29 @@
               
             
             
-              <p class="caption"><span class="caption-text">The dKeras API</span></p>
+              <p class="caption"><span class="caption-text">About dKeras</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="model_api.html">dKeras Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="why.html">Why Use dKeras?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+</ul>
+<p class="caption"><span class="caption-text">The dKeras API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dkeras_api.html">dKeras API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_server.html">Data Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worker.html">Worker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_tips.html">Development Tips</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">Basic Inference Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_model.html">Multiple Model Inference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
 </ul>
 
             
@@ -130,7 +150,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Documentation</li>
+      <li>dKeras: Distributed Keras Engine</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -149,17 +169,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="documentation">
-<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dkeras-distributed-keras-engine">
+<h1>dKeras: Distributed Keras Engine<a class="headerlink" href="#dkeras-distributed-keras-engine" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="make-keras-faster-with-only-one-line-of-code">
+<h2><strong>Make Keras faster with only one line of code.</strong><a class="headerlink" href="#make-keras-faster-with-only-one-line-of-code" title="Permalink to this headline">¶</a></h2>
+<p>dKeras is a distributed Keras engine that is built on top of
+<a class="reference external" href="https://github.com/ray-project/ray/">Ray</a>. By wrapping dKeras around your
+original Keras model, it allows you to use many distributed deep learning
+techniques to automatically improve your system’s performance.</p>
+<p>With an easy-to-use API and a backend framework that can be deployed from
+the laptop to the data center, dKeras simpilifies what used to be a complex
+and time-consuming process into only a few adjustments.</p>
+</div>
+<div class="section" id="why-use-dkeras">
+<h2>Why Use dKeras?<a class="headerlink" href="#why-use-dkeras" title="Permalink to this headline">¶</a></h2>
+<p>Distributed deep learning can be essential for production systems where you
+need fast inference but don’t want expensive hardware accelerators or when
+researchers need to train large models made up of distributable parts.</p>
+<p>This becomes a challenge for developers because they’ll need expertise in not
+only deep learning but also distributed systems. A production team might also
+need a machine learning optimization engineer to use neural network
+optimizers in terms of precision changes, layer fusing, or other techniques.</p>
+<p>Distributed inference is a simple way to get better inference FPS. The graph
+below shows how non-optimized, out-of-box models from default frameworks can
+be quickly sped up through data parallelism:</p>
+<img alt="Inference Comparison" src="_images/inference_comparison.png" />
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">About dKeras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="why.html">Why Use dKeras?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-from-pypi">Install from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#install-from-source">Install from Source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="design.html">Design</a></li>
+</ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">The dKeras API</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="model_api.html">dKeras Model API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dkeras_api.html">dKeras API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_server.html">Data Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="worker.html">Worker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_tips.html">Development Tips</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic.html">Basic Inference Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_model.html">Multiple Model Inference</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Help</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -171,7 +241,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="why.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="why.html" class="btn btn-neutral float-right" title="Why Use dKeras?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

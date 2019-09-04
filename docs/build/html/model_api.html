@@ -83,7 +83,11 @@
               
             
             
-              <p class="caption"><span class="caption-text">The dKeras API</span></p>
+              <p class="caption"><span class="caption-text">About dKeras</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">The dKeras API</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dKeras Model API</a></li>
 </ul>
@@ -203,19 +207,42 @@ default is None.</p></li>
 </dd>
 </dl>
 <dl class="method">
-<dt id="dkeras.dKeras.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">distributed=True</em>, <em class="sig-param">stop_ray=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dkeras.dKeras.predict" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dt id="dkeras.dKeras.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">stop_ray=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dkeras.dKeras.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the Ray workers for the model</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – </p></li>
-<li><p><strong>distributed</strong> – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p></p>
+<dd class="field-odd"><p><strong>stop_ray</strong> – Boolean value for whether to close Ray cluster</p>
 </dd>
 </dl>
+<p>return: None</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dkeras.dKeras.is_ready">
+<code class="sig-name descname">is_ready</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dkeras.dKeras.is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for workers to initialize</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="dkeras.dKeras.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">distributed=True</em>, <em class="sig-param">stop_ray=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dkeras.dKeras.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run inference on a data batch, returns predictions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – numpy array of images</p></li>
+<li><p><strong>distributed</strong> – True for distributed inference, false for serial</p></li>
+<li><p><strong>stop_ray</strong> – boolean value for whether to stop Ray cluster at end</p></li>
+</ul>
+</dd>
+</dl>
+<p>return: Predictions</p>
 </dd></dl>
 
 </dd></dl>

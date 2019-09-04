@@ -7,7 +7,6 @@ from __future__ import division, print_function
 
 import os
 import time
-import keras
 
 import ray
 
@@ -139,12 +138,15 @@ class dKeras(object):
                 else:
                     time.sleep(1e-3)
 
-    def predict(self, data, distributed=True, stop_ray=False):
+    def predict(self, data, distributed=True, close=False):
         """
+        Run inference on a data batch, returns predictions
 
-        :param data:
-        :param distributed:
-        :return:
+        Arguments:
+            data: numpy array of images
+            distributed: True for distributed inference, false for serial
+            close: boolean value for whether to stop workers
+        return: Predictions
         """
         if distributed:
             n_data = len(data)
@@ -161,14 +163,27 @@ class dKeras(object):
             print("Completed!")
         else:
             return self.model.predict(data)
-        if stop_ray:
-            ray.shutdown()
+        if close:
+            self.close()
 
     def close(self, stop_ray=False):
+        """
+        Close the Ray workers for the model
+
+        Arguments:
+            stop_ray: Boolean value for whether to close Ray cluster
+
+        return: None
+        """
         self.data_server.close.remote()
         if stop_ray:
             ray.shutdown()
         time.sleep(5e-2)
 
     def is_ready(self):
+        """
+        Wait for workers to initialize
+
+        :return: True
+        """
         return ray.get(self.data_server.all_ready.remote())

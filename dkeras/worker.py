@@ -14,6 +14,7 @@ import dkeras.config.config as config
 @ray.remote(num_cpus=cpus_per_worker, num_gpus=gpus_per_worker)
 def worker_task(weights, ds, make_model):
     """
+    Worker function loop
 
     :param weights:
     :param ds:

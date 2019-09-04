@@ -11,13 +11,15 @@ import ray
 
 @ray.remote
 class DataServer(object):
+    """
+    Data server for transferring data to workers
+
+    Arguments:
+        n_workers: Number of workers
+        worker_ids: List of worker IDs
+    """
 
     def __init__(self, n_workers, worker_ids):
-        """
-
-        :param n_workers:
-        :param worker_ids:
-        """
         self.n_workers = n_workers
         self.id_indexes = {}
         self.id = 0
@@ -32,8 +34,9 @@ class DataServer(object):
 
     def pull_results(self):
         """
+        Pull the prediction results
 
-        :return:
+        :return: Numpy array with the output of the workers
         """
         output = []
         for n in self.results:
@@ -45,8 +48,10 @@ class DataServer(object):
 
     def close(self):
         """
+        Set the close flag to True, which will close the workers
+        on the next worker data pull request
 
-        :return:
+        :return: None
         """
         self.closed = True
 
