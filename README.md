@@ -89,3 +89,41 @@ from dkeras import dKeras
 model = dKeras(ResNet50)
 model.predict(data)
 ```
+
+#### Full Example
+```python
+from tensorflow.keras.applications import ResNet50
+from dkeras import dKeras
+import numpy as np
+import ray
+
+ray.init()
+
+data = np.random.uniform(-1, 1, (100, 224, 224, 3))
+
+model = dKeras(ResNet50, init_ray=False, wait_for_workers=True, n_workers=4)
+preds = model.predict(data)
+```
+
+#### Multiple Model Example
+```python
+import numpy as np
+from tensorflow.keras.applications import ResNet50, MobileNet
+
+from dkeras import dKeras
+import ray
+
+ray.init()
+n_data = 20
+
+model1 = dKeras(ResNet50, weights='imagenet', wait_for_workers=True, n_workers=3)
+model2 = dKeras(MobileNet, weights='imagenet', wait_for_workers=True, n_workers=3)
+
+test_data = np.random.uniform(-1, 1, (n_data, 224, 224, 3))
+
+model1.predict(test_data)
+model2.predict(test_data)
+
+model1.close()
+model2.close()
+```
