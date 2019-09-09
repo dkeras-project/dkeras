@@ -1,0 +1,12 @@
+model1:
+    file: None
+    CPUs: 1
+    GPUs: 0
+    n_workers: 4
+    ip_address: 192.168.0.102
+model2:
+    file: None
+    CPUs: 4
+    GPUs: 0
+    n_workers: 2
+    ip_address: 192.168.0.102
