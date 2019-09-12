@@ -21,19 +21,16 @@ sleep {}
 """
 
 @ray.remote
-def _get_node_IPs():
-    time.sleep(1e-3)
-    return ray.services.get_node_ip_address()
+def _get_n_nodes():
+    return len(ray.nodes())
 
-def wait_for_IPs(n_ips, timeout=300):
+
+def wait_for_workers(n_workers, timeout=300):
     start_time = time.time()
-    print("Waiting for {} workers".format(n_ips))
+    print("Waiting for {} workers".format(n_workers))
     while True:
-        ips = set(ray.get([_get_node_IPs.remote() for _ in range(100)]))
-        print(ips)
-        print(len(ips))
-        time.sleep(1)
-        if len(ips) >= n_ips:
+        n_nodes = ray.get(_get_n_nodes.remote())
+        if len(n_nodes) >= n_workers:
             return True
         if (start_time-time.time() >= timeout):
             return False
@@ -74,7 +71,7 @@ def init_pbs_ray(n_workers=3, rm_existing=True, iface_name='eno1', worker_time=3
     print("{}:{}".format(addr, port))
     ray.init(redis_address='{}:{}'.format(addr, port))
     print("Ray initialized")
-    return wait_for_IPs(n_workers+1)
+    return wait_for_workers(n_workers+1)
 
 
 def main():
