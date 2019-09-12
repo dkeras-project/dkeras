@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7cf4c0-8e14-40c5-9556-fe6cda8879d9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dkeras/utils/qsub_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/utils/qsub_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/dkeras.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/dkeras.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/workers/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/workers/worker.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

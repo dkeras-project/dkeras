@@ -7,6 +7,7 @@ from __future__ import division, print_function
 
 import os
 import time
+import numpy as np
 
 import ray
 
@@ -138,7 +139,7 @@ class dKeras(object):
                 else:
                     time.sleep(1e-3)
 
-    def predict(self, data, distributed=True, close=False):
+    def predict(self, data, distributed=True, close=False, int8_cvrt=False):
         """
         Run inference on a data batch, returns predictions
 
@@ -149,6 +150,9 @@ class dKeras(object):
         return: Predictions
         """
         if distributed:
+            if int8_cvrt:
+                data = np.asarray(data)
+                data = np.uint8(data*255)
             n_data = len(data)
             if n_data % self.n_workers > 0:
                 self.data_server.set_batch_size.remote(
@@ -159,12 +163,12 @@ class dKeras(object):
             self.data_server.push_data.remote(data)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)
+            if close:
+                self.close()
             return ray.get(self.data_server.pull_results.remote())
-            print("Completed!")
         else:
             return self.model.predict(data)
-        if close:
-            self.close()
+
 
     def close(self, stop_ray=False):
         """

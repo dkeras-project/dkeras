@@ -30,8 +30,14 @@ def worker_task(weights, ds, make_model):
         if packet_id == 'STOP':
             break
         if len(data) > 0:
-            data = np.asarray(data)
-            results = worker_model.predict(data)
-            ds.push.remote(results, packet_id)
+            if packet_id == 'infer_float':
+                data = np.asarray(data)
+                results = worker_model.predict(data)
+                ds.push.remote(results, packet_id)
+            elif packet_id == 'infer_int8':
+                data = np.asarray(data)
+                data = np.float16(data/255)
+                results = worker_model.predict(data)
+                ds.push.remote(results, packet_id)
         else:
             time.sleep(config.WORKER_WAIT_TIME)
