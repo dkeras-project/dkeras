@@ -139,7 +139,7 @@ class dKeras(object):
                 else:
                     time.sleep(1e-3)
 
-    def predict(self, data, distributed=True, close=False, int8_cvrt=False):
+    def predict(self, data, distributed=True, int8_cvrt=False):
         """
         Run inference on a data batch, returns predictions
 
@@ -151,6 +151,7 @@ class dKeras(object):
         """
         if distributed:
             if int8_cvrt:
+                self.data_server.set_datatype.remote('int8')
                 data = np.asarray(data)
                 data = np.uint8(data*255)
             n_data = len(data)
@@ -163,8 +164,6 @@ class dKeras(object):
             self.data_server.push_data.remote(data)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)
-            if close:
-                self.close()
             return ray.get(self.data_server.pull_results.remote())
         else:
             return self.model.predict(data)

@@ -35,6 +35,8 @@ def worker_task(weights, ds, make_model):
                 results = worker_model.predict(data)
                 ds.push.remote(results, packet_id)
             elif packet_id == 'infer_int8':
+                print('-'*80)
+                print("Recieved data!")
                 data = np.asarray(data)
                 data = np.float16(data/255)
                 results = worker_model.predict(data)

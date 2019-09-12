@@ -13,5 +13,5 @@ model = dKeras(ResNet50, init_ray=False, wait_for_workers=True, n_workers=4)
 
 start_time = time.time()
 preds = model.predict(data, int8_cvrt=True)
-elapsed = start_time - time.time()
+elapsed = time.time() - start_time
 print(elapsed, n_data/elapsed)

@@ -19,18 +19,23 @@ class DataServer(object):
         worker_ids: List of worker IDs
     """
 
-    def __init__(self, n_workers, worker_ids):
+    def __init__(self, n_workers, worker_ids, datatype='float', mode='infer'):
         self.n_workers = n_workers
         self.id_indexes = {}
         self.id = 0
         self.data = []
         self.indexes = []
         self.n_data = 0
+        self.datatype = datatype
+        self.mode = mode
         self.results = [-1 for _ in range(self.n_workers)]
         self.closed = False
         self.worker_status = {}
         for n in worker_ids:
             self.worker_status[n] = False
+
+    def set_datatype(self, datatype):
+        self.datatype = datatype
 
     def pull_results(self):
         """
@@ -106,12 +111,12 @@ class DataServer(object):
         :return:
         """
         if self.closed:
-            return 'STOP', None
+            return '-1_STOP_float', None
         if len(self.data) == 0:
-            return None, []
+            return '-1_Empty_float', []
         output = self.data[:self.batch_size]
         self.data = self.data[self.batch_size:]
-        packet_id = str(self.id)
+        packet_id = '{}_{}_{}'.format(self.id, self.mode, self.datatype)
         self.id += 1
         if len(self.data) == 0:
             self.id = 0

@@ -25,18 +25,24 @@ def worker_task(worker_id, weights, ds, make_model):
     wait_time = config.WORKER_WAIT_TIME
     ds.is_ready.remote(worker_id)
     while True:
-        packet_id, data = ray.get(ds.pull.remote())
-        if packet_id == 'STOP':
+        flag, data = ray.get(ds.pull.remote())
+        packet_id, mode, datatype = flag.split('_')
+        if mode == 'STOP':
             break
         if len(data) > 0:
-            if packet_id == 'infer_float':
-                data = np.asarray(data)
-                results = worker_model.predict(data, batch_size=batch_size)
-                ds.push.remote(results, packet_id)
-            elif packet_id == 'infer_uint8':
-                data = np.asarray(data)
-                data = np.float16(data/255)
-                results = worker_model.predict(data, batch_size=batch_size)
-                ds.push.remote(results, packet_id)
+            if mode == 'infer':
+                if datatype == 'float':
+                    data = np.asarray(data)
+                    results = worker_model.predict(data, batch_size=batch_size)
+                    ds.push.remote(results, packet_id)
+                elif datatype == 'int8':
+                    data = np.asarray(data)
+                    data = np.float16(data/255)
+                    results = worker_model.predict(data, batch_size=batch_size)
+                    ds.push.remote(results, packet_id)
+                else:
+                    raise UserWarning("Invalid datatype flag {}".format(datatype))
+            else:
+                raise UserWarning("Invalid mode flag {}".format(mode))
         else:
             time.sleep(wait_time)
