@@ -16,8 +16,8 @@ WORKER_INFERENCE_BATCH_SIZE = 250
 # Hardware Resource Configuration
 # -----------------------------------------------------------------------------
 N_CPUS_PER_SERVER = None
-N_CPUS_PER_WORKER = 2
-N_GPUS_PER_WORKER = 0
+N_CPUS_PER_WORKER = None
+N_GPUS_PER_WORKER = None
 
 # -----------------------------------------------------------------------------
 # Autoscaler Variables

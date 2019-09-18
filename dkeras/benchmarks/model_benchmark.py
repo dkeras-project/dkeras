@@ -7,9 +7,9 @@ from __future__ import division, print_function
 
 import argparse
 import time
-import ray
 
 import numpy as np
+import ray
 from tensorflow.keras.applications import (DenseNet121, DenseNet169,
                                            DenseNet201,
                                            InceptionResNetV2, InceptionV3,
@@ -21,27 +21,26 @@ from dkeras import dKeras
 
 
 def main():
-
     model_names = {
-        'densenet121'        : DenseNet121,
-        'densenet169'        : DenseNet169,
-        'densenet201'        : DenseNet201,
-        'inception_v3'       : InceptionV3,
+        'densenet121': DenseNet121,
+        'densenet169': DenseNet169,
+        'densenet201': DenseNet201,
+        'inception_v3': InceptionV3,
         'inception_resnet_v2': InceptionResNetV2,
-        'mobilenet'          : MobileNet,
-        'mobilenet_v2'       : MobileNetV2,
-        'nasnet_large'       : NASNetLarge,
-        'nasnet_mobile'      : NASNetMobile,
-        'resnet50'           : ResNet50,
-        'vgg16'              : VGG16,
-        'vgg19'              : VGG19,
-        'xception'           : Xception
+        'mobilenet': MobileNet,
+        'mobilenet_v2': MobileNetV2,
+        'nasnet_large': NASNetLarge,
+        'nasnet_mobile': NASNetMobile,
+        'resnet50': ResNet50,
+        'vgg16': VGG16,
+        'vgg19': VGG19,
+        'xception': Xception
     }
     # os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
     parser = argparse.ArgumentParser()
     parser.add_argument("--n-data", help="Number of fake datapoints",
                         default=1000, type=int)
-    parser.add_argument("--n_workers", help="Number of Ray workers",
+    parser.add_argument("--n-workers", help="Number of Ray workers",
                         default=5, type=int)
 
     parser.add_argument("--test", help="0: Local, 1: dKeras",
@@ -96,7 +95,7 @@ def main():
     if test_type == 0:
 
         for model, name in zip(models, model_names):
-            print('{}\n{}'.format('='*80, name))
+            print('{}\n{}'.format('=' * 80, name))
             model = model()
             # model = model_names[model_name]()
 
@@ -114,7 +113,7 @@ def main():
     elif test_type == 1:
 
         for m, name in zip(models, model_names):
-            print('{}\n{}'.format('='*80, name.upper()))
+            print('{}\n{}'.format('=' * 80, name.upper()))
             if use_search:
                 results = {}
                 best_time = np.inf
@@ -142,8 +141,6 @@ def main():
 
                     results[str(n)] = elapsed
                     model.close()
-
-
 
                 # print('{}\n\t{}\n\tElapsed Time'.format('=' * 80))
 

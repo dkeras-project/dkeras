@@ -19,15 +19,15 @@ def _cmd(cmd):
 
 
 def _which_qsub():
-    return subprocess.check_output(['which', 'qsub']).decode().replace('\n', '')
+    return _cmd('which qsub').replace('\n', '')
 
 
 def _which_qstat():
-    return subprocess.check_output(['which', 'qstat']).decode().replace('\n', '')
+    return _cmd('which qstat').decode().replace('\n', '')
 
 
 def _which_qdel():
-    return subprocess.check_output(['which', 'qdel']).decode().replace('\n', '')
+    return _cmd('which qdel').decode().replace('\n', '')
 
 
 create_worker_script = """
@@ -111,7 +111,7 @@ def init_pbs_ray(n_workers=3, rm_existing=True, iface_name='eno1', worker_time=3
             print(list(qsub_path))
             print(list(worker_file))
 
-        qsub_pid = subprocess.check_output([qsub_path, '-lselect=1', '-lplace=excl', worker_file])
+        qsub_pid = subprocess.check_output([qsub_path, '-lnodes=1:ppn=2', worker_file])
         qsub_pid = qsub_pid.decode()[:-1].split('.')[0]
         qsub_pids.append(qsub_pid)
 
