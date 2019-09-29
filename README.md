@@ -52,9 +52,7 @@ be quickly sped up through data parallelism:
 The first official release of dKeras will be available soon. For 
 now, install from source.
 ```bash
-git clone https://github.com/gndctrl2mjrtm/dkeras
-cd dkeras
-pip install -e .
+pip install git+https://github.com/dkeras-project/dkeras
 ```
 
 ### Requirements

@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2f7cf4c0-8e14-40c5-9556-fe6cda8879d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/benchmarks/model_benchmark.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/config/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/config/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dkeras/utils/qsub_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/utils/qsub_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/simple_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/simple_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dkeras/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +18,7 @@
   <component name="ProjectId" id="1OhoAzdYShxjrZEso1dis79bPAe" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../frameworks/mujoco-py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../papers/darwin_tree" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
