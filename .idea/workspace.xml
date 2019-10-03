@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/dkeras/dkeras.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/dkeras.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dkeras/servers/data_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/servers/data_server.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dkeras/workers/worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/dkeras/workers/worker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/basic_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/basic_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/non_ray_multiprocessing_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing/non_ray_multiprocessing_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

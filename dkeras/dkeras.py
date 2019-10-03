@@ -69,7 +69,7 @@ class dKeras(object):
     def __init__(self,
                  model,
                  verbose: bool = True,
-                 weights: list = None,
+                 weights: str = None,
                  n_workers: int = None,
                  init_ray: bool = True,
                  distributed: bool = True,
@@ -150,7 +150,7 @@ class dKeras(object):
                 steps=None,
                 callbacks=None,
                 max_queue_size=10,
-                multiprocessing_workers=1,
+                workers=1,
                 use_multiprocessing=False):
         """Generates output predictions for the input samples.
                 Computation is done in batches.
@@ -220,7 +220,7 @@ class dKeras(object):
                 self.data_server.set_batch_size.remote(
                     int(n_data / self.n_workers))
             infer_config = [batch_size, verbose, steps, callbacks, max_queue_size,
-                            multiprocessing_workers, use_multiprocessing]
+                            workers, use_multiprocessing]
             self.data_server.push_data.remote(x, mode='infer', infer_config=infer_config)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)

@@ -90,7 +90,8 @@ def worker_task(worker_id, weights, ds, make_model):
             break
         if len(data) > 0:
             if mode == 'infer':
-                verbose, steps, callbacks, max_queue_size, workers, use_multiprocessing = config
+                if len(job_config) == 7:
+                    __, verbose, steps, callbacks, max_queue_size, workers, use_multiprocessing = job_config
                 if datatype == 'float':
                     data = np.asarray(data)
                 elif datatype == 'int8':

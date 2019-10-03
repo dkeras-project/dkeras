@@ -122,15 +122,16 @@ class DataServer(object):
         :return:
         """
         if self.closed:
-            return '-1_STOP_float', None
+            packet_id, output = '-1_STOP_float', None
         if len(self.data) == 0:
-            return '-1_Empty_float', []
-        output = self.data[:self.batch_size]
-        self.data = self.data[self.batch_size:]
-        packet_id = '{}_{}_{}'.format(self.id, self.mode, self.datatype)
-        self.id += 1
-        if len(self.data) == 0:
-            self.id = 0
+            packet_id, output = '-1_Empty_float', []
+        else:
+            output = self.data[:self.batch_size]
+            self.data = self.data[self.batch_size:]
+            packet_id = '{}_{}_{}'.format(self.id, self.mode, self.datatype)
+            self.id += 1
+            if len(self.data) == 0:
+                self.id = 0
         return packet_id, output, self.job_config
 
     def is_ready(self, worker_id):
