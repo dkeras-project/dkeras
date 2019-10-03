@@ -7,8 +7,8 @@ from __future__ import division, print_function
 
 import os
 import time
-import numpy as np
 
+import numpy as np
 import ray
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -72,6 +72,7 @@ class dKeras(object):
                  weights: list = None,
                  n_workers: int = None,
                  init_ray: bool = True,
+                 distributed: bool = True,
                  rm_existing_ray: bool = False,
                  rm_local_model: bool = True,
                  wait_for_workers: bool = False,
@@ -107,6 +108,8 @@ class dKeras(object):
         worker_ids = []
         for i in range(self.n_workers):
             worker_ids.append('worker_{}'.format(i))
+
+        self.distributed = distributed
         self.worker_ids = worker_ids
         self.model = model(weights=weights)
         self.input_shape = self.model.input_shape
@@ -153,7 +156,7 @@ class dKeras(object):
             if int8_cvrt:
                 self.data_server.set_datatype.remote('int8')
                 data = np.asarray(data)
-                data = np.uint8(data*255)
+                data = np.uint8(data * 255)
             n_data = len(data)
             if n_data % self.n_workers > 0:
                 self.data_server.set_batch_size.remote(
@@ -167,7 +170,6 @@ class dKeras(object):
             return ray.get(self.data_server.pull_results.remote())
         else:
             return self.model.predict(data)
-
 
     def close(self, stop_ray=False):
         """
@@ -190,3 +192,81 @@ class dKeras(object):
         :return: True
         """
         return ray.get(self.data_server.all_ready.remote())
+
+    def compile(self, optimizer: str,
+                loss=None,
+                metrics=None,
+                loss_weights=None,
+                sample_weight_mode=None,
+                weighted_metrics=None,
+                target_tensors=None):
+        """
+
+        :param optimizer:
+        :param loss:
+        :param metrics:
+        :param loss_weights:
+        :param sample_weight_mode:
+        :param weighted_metrics:
+        :param target_tensors:
+        :return:
+        """
+        if self.distributed:
+            compile_data = ray.put([optimizer,
+                                       loss,
+                                       metrics,
+                                       loss_weights,
+                                       sample_weight_mode,
+                                       weighted_metrics,
+                                       target_tensors])
+            self.data_server.push_compile.remote(compile_data)
+        else:
+            self.model.compile(optimizer,
+                               loss=loss,
+                               metrics=metrics,
+                               loss_weights=loss_weights,
+                               sample_weight_mode=sample_weight_mode)
+
+    def fit(self,
+            x=None,
+            y=None,
+            method = 'weight_averaging',
+            batch_size=None,
+            epochs=1,
+            verbose=1,
+            callbacks=None,
+            validation_split=0.0,
+            validation_data=None,
+            shuffle=True,
+            class_weight=None,
+            sample_weight=None,
+            initial_epoch=0,
+            steps_per_epoch=None,
+            validation_steps=None,
+            validation_freq=1,
+            max_queue_size=10,
+            workers=1,
+            use_multiprocessing=False):
+        if self.distributed:
+            x = ray.put(x)
+            y = ray.put(y)
+        else:
+            self.model.fit(x=x,
+                           y=y,
+                           batch_size=batch_size,
+                           epochs=epochs,
+                           verbose=verbose,
+                           callbacks=callbacks,
+                           validation_split=validation_split,
+                           validation_data=validation_data,
+                           shuffle=shuffle,
+                           class_weight=class_weight,
+                           sample_weight=sample_weight,
+                           initial_epoch=initial_epoch,
+                           steps_per_epoch=steps_per_epoch,
+                           validation_steps=validation_steps,
+                           validation_freq=validation_freq,
+                           max_queue_size=max_queue_size,
+                           workers=workers,
+                           use_multiprocessing=use_multiprocessing)
+
