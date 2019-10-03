@@ -31,6 +31,7 @@ class DataServer(object):
         self.results = [-1 for _ in range(self.n_workers)]
         self.closed = False
         self.worker_status = {}
+        self.job_config = [None]
         for n in worker_ids:
             self.worker_status[n] = False
 
@@ -78,14 +79,24 @@ class DataServer(object):
                 return False
         return self.n_workers == len(self.results)
 
-    def push_data(self, data):
+    def push_data(self, data,
+                  mode='infer',
+                  infer_config=None):
         """
 
         :param data:
+        :param mode:
+        :param infer_config:
         :return:
         """
+        if infer_config is None:
+            # verbose, steps, callbacks, max_queue_size,
+            # workers, use_multiprocessing
+            infer_config = [0, None, None, 10, 1, False]
         self.n_data = len(data)
         self.data = data
+        self.mode = mode
+        self.job_config = infer_config
 
     def parse_packet_id(self, packet_id):
         """
@@ -120,7 +131,7 @@ class DataServer(object):
         self.id += 1
         if len(self.data) == 0:
             self.id = 0
-        return packet_id, output
+        return packet_id, output, self.job_config
 
     def is_ready(self, worker_id):
         """

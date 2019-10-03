@@ -142,7 +142,62 @@ class dKeras(object):
                 else:
                     time.sleep(1e-3)
 
-    def predict(self, data, distributed=True, int8_cvrt=False):
+    def predict(self, x,
+                distributed=True,
+                int8_cvrt=False,
+                batch_size=None,
+                verbose=0,
+                steps=None,
+                callbacks=None,
+                max_queue_size=10,
+                multiprocessing_workers=1,
+                use_multiprocessing=False):
+        """Generates output predictions for the input samples.
+                Computation is done in batches.
+                # Arguments
+                    x: Input data. It could be:
+                        - A Numpy array (or array-like), or a list of arrays
+                          (in case the model has multiple inputs).
+                        - A dict mapping input names to the corresponding
+                          array/tensors, if the model has named inputs.
+                        - A generator or `keras.utils.Sequence` returning
+                          `(inputs, targets)` or `(inputs, targets, sample weights)`.
+                        - None (default) if feeding from framework-native
+                          tensors (e.g. TensorFlow data tensors).
+                    batch_size: Integer or `None`.
+                        Number of samples per gradient update.
+                        If unspecified, `batch_size` will default to 32.
+                        Do not specify the `batch_size` is your data is in the
+                        form of symbolic tensors, generators, or
+                        `keras.utils.Sequence` instances (since they generate batches).
+                    verbose: Verbosity mode, 0 or 1.
+                    steps: Total number of steps (batches of samples)
+                        before declaring the prediction round finished.
+                        Ignored with the default value of `None`.
+                    callbacks: List of `keras.callbacks.Callback` instances.
+                        List of callbacks to apply during prediction.
+                        See [callbacks](/callbacks).
+                    max_queue_size: Integer. Used for generator or `keras.utils.Sequence`
+                        input only. Maximum size for the generator queue.
+                        If unspecified, `max_queue_size` will default to 10.
+                    workers: Integer. Used for generator or `keras.utils.Sequence` input
+                        only. Maximum number of processes to spin up when using
+                        process-based threading. If unspecified, `workers` will default
+                        to 1. If 0, will execute the generator on the main thread.
+                    use_multiprocessing: Boolean. Used for generator or
+                        `keras.utils.Sequence` input only. If `True`, use process-based
+                        threading. If unspecified, `use_multiprocessing` will default to
+                        `False`. Note that because this implementation relies on
+                        multiprocessing, you should not pass non-picklable arguments to
+                        the generator as they can't be passed easily to children processes.
+                # Returns
+                    Numpy array(s) of predictions.
+                # Raises
+                    ValueError: In case of mismatch between the provided
+                        input data and the model's expectations,
+                        or in case a stateful model receives a number of samples
+                        that is not a multiple of the batch size.
+                """
         """
         Run inference on a data batch, returns predictions
 
@@ -155,21 +210,23 @@ class dKeras(object):
         if distributed:
             if int8_cvrt:
                 self.data_server.set_datatype.remote('int8')
-                data = np.asarray(data)
-                data = np.uint8(data * 255)
-            n_data = len(data)
+                x = np.asarray(x)
+                x = np.uint8(x * 255)
+            n_data = len(x)
             if n_data % self.n_workers > 0:
                 self.data_server.set_batch_size.remote(
                     int(n_data / self.n_workers) + 1)
             else:
                 self.data_server.set_batch_size.remote(
                     int(n_data / self.n_workers))
-            self.data_server.push_data.remote(data)
+            infer_config = [batch_size, verbose, steps, callbacks, max_queue_size,
+                            multiprocessing_workers, use_multiprocessing]
+            self.data_server.push_data.remote(x, mode='infer', infer_config=infer_config)
             while not ray.get(self.data_server.is_complete.remote()):
                 time.sleep(1e-4)
             return ray.get(self.data_server.pull_results.remote())
         else:
-            return self.model.predict(data)
+            return self.model.predict(x)
 
     def close(self, stop_ray=False):
         """
@@ -213,12 +270,12 @@ class dKeras(object):
         """
         if self.distributed:
             compile_data = ray.put([optimizer,
-                                       loss,
-                                       metrics,
-                                       loss_weights,
-                                       sample_weight_mode,
-                                       weighted_metrics,
-                                       target_tensors])
+                                    loss,
+                                    metrics,
+                                    loss_weights,
+                                    sample_weight_mode,
+                                    weighted_metrics,
+                                    target_tensors])
             self.data_server.push_compile.remote(compile_data)
         else:
             self.model.compile(optimizer,
@@ -230,7 +287,8 @@ class dKeras(object):
     def fit(self,
             x=None,
             y=None,
-            method = 'weight_averaging',
+            distributed=None,
+            method='weight_averaging',
             batch_size=None,
             epochs=1,
             verbose=1,
@@ -247,7 +305,11 @@ class dKeras(object):
             max_queue_size=10,
             workers=1,
             use_multiprocessing=False):
-        if self.distributed:
+        if distributed == None:
+            distributed = self.distributed
+        if distributed:
+            raise NotImplementedError("model.fit for distributed is not implemented yet,\
+                dKeras will be updated soon")
             x = ray.put(x)
             y = ray.put(y)
         else:
@@ -270,3 +332,99 @@ class dKeras(object):
                            workers=workers,
                            use_multiprocessing=use_multiprocessing)
 
+    def evaluate(self,
+                 x=None,
+                 y=None,
+                 distributed=None,
+                 batch_size=None,
+                 verbose=1,
+                 sample_weight=None,
+                 steps=None,
+                 callbacks=None,
+                 max_queue_size=10,
+                 workers=1,
+                 use_multiprocessing=False):
+        """Returns the loss value & metrics values for the model in test mode.
+        Computation is done in batches.
+        # Arguments
+            x: Input data. It could be:
+                - A Numpy array (or array-like), or a list of arrays
+                  (in case the model has multiple inputs).
+                - A dict mapping input names to the corresponding
+                  array/tensors, if the model has named inputs.
+                - A generator or `keras.utils.Sequence` returning
+                  `(inputs, targets)` or `(inputs, targets, sample weights)`.
+                - None (default) if feeding from framework-native
+                  tensors (e.g. TensorFlow data tensors).
+            y: Target data. Like the input data `x`,
+                it could be either Numpy array(s), framework-native tensor(s),
+                list of Numpy arrays (if the model has multiple outputs) or
+                None (default) if feeding from framework-native tensors
+                (e.g. TensorFlow data tensors).
+                If output layers in the model are named, you can also pass a
+                dictionary mapping output names to Numpy arrays.
+                If `x` is a generator, or `keras.utils.Sequence` instance,
+                `y` should not be specified (since targets will be obtained
+                from `x`).
+            batch_size: Integer or `None`.
+                Number of samples per gradient update.
+                If unspecified, `batch_size` will default to 32.
+                Do not specify the `batch_size` is your data is in the
+                form of symbolic tensors, generators, or
+                `keras.utils.Sequence` instances (since they generate batches).
+            verbose: 0 or 1. Verbosity mode.
+                0 = silent, 1 = progress bar.
+            sample_weight: Optional Numpy array of weights for
+                the test samples, used for weighting the loss function.
+                You can either pass a flat (1D)
+                Numpy array with the same length as the input samples
+                (1:1 mapping between weights and samples),
+                or in the case of temporal data,
+                you can pass a 2D array with shape
+                `(samples, sequence_length)`,
+                to apply a different weight to every timestep of every sample.
+                In this case you should make sure to specify
+                `sample_weight_mode="temporal"` in `compile()`.
+            steps: Integer or `None`.
+                Total number of steps (batches of samples)
+                before declaring the evaluation round finished.
+                Ignored with the default value of `None`.
+            callbacks: List of `keras.callbacks.Callback` instances.
+                List of callbacks to apply during evaluation.
+                See [callbacks](/callbacks).
+            max_queue_size: Integer. Used for generator or `keras.utils.Sequence`
+                input only. Maximum size for the generator queue.
+                If unspecified, `max_queue_size` will default to 10.
+            workers: Integer. Used for generator or `keras.utils.Sequence` input
+                only. Maximum number of processes to spin up when using
+                process-based threading. If unspecified, `workers` will default
+                to 1. If 0, will execute the generator on the main thread.
+            use_multiprocessing: Boolean. Used for generator or
+                `keras.utils.Sequence` input only. If `True`, use process-based
+                threading. If unspecified, `use_multiprocessing` will default to
+                `False`. Note that because this implementation relies on
+                multiprocessing, you should not pass non-picklable arguments to
+                the generator as they can't be passed easily to children processes.
+        # Raises
+            ValueError: in case of invalid arguments.
+        # Returns
+            Scalar test loss (if the model has a single output and no metrics)
+            or list of scalars (if the model has multiple outputs
+            and/or metrics). The attribute `model.metrics_names` will give you
+            the display labels for the scalar outputs.
+        """
+        if distributed is None:
+            distributed = self.distributed
+        if distributed:
+            raise NotImplementedError("model.evaulate is not yet supported with distributed=True")
+        else:
+            self.model.evaluate(x=x,
+                                y=y,
+                                batch_size=batch_size,
+                                verbose=verbose,
+                                sample_weight=sample_weight,
+                                steps=steps,
+                                callbacks=callbacks,
+                                max_queue_size=max_queue_size,
+                                workers=workers,
+                                use_multiprocessing=use_multiprocessing)
